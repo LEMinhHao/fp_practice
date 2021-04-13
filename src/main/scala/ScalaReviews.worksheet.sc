@@ -462,10 +462,10 @@ abstract class Monoid[A] {
   def zero: A
 }
 
-implicit val intMonoid = new Monoid[Int] {
-  def op(x: Int, y: Int): Int = x + y
-  def zero: Int = 0
-}
+// implicit val intMonoid = new Monoid[Int] {
+//   def op(x: Int, y: Int): Int = x + y
+//   def zero: Int = 0
+// }
 
 implicit val stringMonoid = new Monoid[String] {
   def op(x: String, y: String): String = x + y
@@ -478,7 +478,7 @@ def sum[A](xs: List[A])(implicit m: Monoid[A]): A = {
 }
 
 // Scala wil find implicit Monoid[Int] in this context and use that implicit Monoid[Int]
-sum(List(1,2,3)) 
+//sum(List(1,2,3)) 
 
 // Scala will find implicit Monoid[String] in this context and use that implicit Monoid[String]
 sum(List("a", "b", "c"))
@@ -487,7 +487,28 @@ sum(List("a", "b", "c"))
 
 
 // TODO: Implicit Conversions
-// 
+// slow to find implicit
+// Implcit a function to CONVERSE TYPE instead of impliciting a parameter
+implicit def conversion(x: Int): String = x.toString
+def show(s: String): Unit = println(s)
+show(1)
+
+
+//Implicit class
+// TODO: add functions to a class A with syntax:
+// implicit class _className(a: A) 
+def multiply(s: String)(n: Int) = List.fill(n)(s).mkString
+multiply("hello")(5)
+
+
+
+// add function ** to class String.
+//
+implicit class className(s: String) {
+  def **(n: Int) = multiply(s)(n)
+}
+
+"hello" ** 5
 
 
 

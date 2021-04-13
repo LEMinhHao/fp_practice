@@ -1,7 +1,14 @@
 import cats.implicits._
 import cats.Semigroup
+// TODO: import cats.syntax._
 
 
+// TODO: read function of List (most used )
+// Review Applicative, do exercise of Cats
+// Rework Calculation part => read the source or document.
+
+// cats.simplicits._ already has cats.syntax
+// view cats.MonadOps
 
 // --- SEMIGROUP
 
