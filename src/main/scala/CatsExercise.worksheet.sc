@@ -75,7 +75,7 @@ implicit val listFunctor: Functor[List] = new Functor[List] {
 
 // However, functors can also be created for types which don't have a map method.
 // For example, if we create a Functor for Function1[In, *] we can use andThen to implement map:
-
+// TODO :
 
 
 // -------------------------------------------------

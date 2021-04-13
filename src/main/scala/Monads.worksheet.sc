@@ -48,6 +48,13 @@ trait Monad[F[_]] extends Functor[F]{
     def traverse[A,B](la: List[A])(f: A => F[B]) : F[List[B]] = 
         la.foldRight(unit(List[B]()))( (a, flb) => map2(f(a), flb)(_ :: _)) 
 
+    // (List[A])(A => F[B])  : F[List[B]]
+    def traverse2[A,B](la: List[A])(f: A => F[B]) : F[List[B]] = 
+        la.foldRight(unit(List[B]()))((a, flb) => map2(f(a), flb)(_ :: _))
+
+    def sequence2[A](lfa: List[F[A]]): F[List[A]] = 
+        traverse2(lfa)(fa => fa)
+    
     // (n, fa) => fla
     def replicateM[A](n: Int, fa: F[A]): F[List[A]] =
         sequence(List.fill(n)(fa))
